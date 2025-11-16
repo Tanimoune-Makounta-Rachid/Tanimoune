@@ -1,0 +1,23 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Connexion</title><link href="style.css" rel="stylesheet"></head><body>
+<header><div class="container"><h1><span>la Numérique Transformez vos idées en projets concrets </span></h1><nav><a href="index.html">Accueil</a></nav></div></header>
+<main class="section">
+  <h2>Connexion (simulation)</h2>
+  <form id="loginForm" class="card" style="max-width:420px;margin:auto">
+    <input name="email" type="email" placeholder="Email" required><br><br>
+    <input name="password" type="password" placeholder="Mot de passe" required><br><br>
+    <select name="role"><option value="eleve">Élève</option><option value="enseignant">Enseignant</option></select><br><br>
+    <button class="btn" type="submit">Se connecter (simulé)</button>
+    <div id="msg"></div>
+  </form>
+</main>
+<script>
+document.getElementById('loginForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const fd=Object.fromEntries(new FormData(e.target).entries());
+  localStorage.setItem('user', JSON.stringify({email:fd.email,role:fd.role,fullname:fd.email.split('@')[0]}));
+  document.getElementById('msg').textContent='✅ Connecté localement en tant que ' + fd.role;
+  setTimeout(()=>location.href='index.html',800);
+});
+</script>
+</body></html>
